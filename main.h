@@ -1,10 +1,17 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+
+/*functions to make the code look harder*/
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+
+/*Memory functions*/
+void *_memcpy(void *dest, const void *src, size_t n);
+void *_realloc(void *ptr, size_t new_size);
 
 #endif
