@@ -13,7 +13,6 @@ int main(void)
 	char *buff = NULL;
 	size_t buff_size = 0;
 	char *token, **arr;
-	int line_num;
 	int i = 0;
 
 	while (1)
@@ -26,17 +25,17 @@ int main(void)
 		while (token)
 		{
 			arr[i] = token;
-			token = _strtok(NULL, " \n\t");
+			token = strtok(NULL, " \n\t");
 			i++;
 		}
 
 		arr[i] = NULL;
 
-		if (strcmp(arr[0], "env") == 0)
+		if (_strcmp(arr[0], "env") == 0)
 		{
 			print_environment();
 		}
-		else if (strcmp(arr[0], "exit") == 0)
+		else if (_strcmp(arr[0], "exit") == 0)
 		{
 			exit_shell();
 		}

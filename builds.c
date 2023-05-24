@@ -28,3 +28,21 @@ void exit_shell(void)
 {
     exit(EXIT_SUCCESS);
 }
+void execute_command(char **arr)
+{
+	int status;
+	pid_t pid = fork();
+
+	if (pid == 0)
+	{
+		if (execve(arr[0], arr, NULL) == -1)
+		{
+			perror("execve");
+			exit(0);
+		}
+	}
+	else
+	{
+		wait(&status);
+	}
+}

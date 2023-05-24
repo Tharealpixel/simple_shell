@@ -16,7 +16,7 @@ void *_realloc(void *ptr, size_t new_size);
 int _strcmp(const char *s1, const char *s2);
 void exit_shell(void);
 void print_environment(void);
-
+void execute_command(char **arr);
 /*Helpers*/
 void _puts(char *str);
 int _putchar(char c);
