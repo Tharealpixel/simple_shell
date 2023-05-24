@@ -2,6 +2,7 @@
 
 /**
  *_menver -print function the current environment
+ * @info_t: argum
  * Return: Always 0
  */
 int _menver(info_t *info)
@@ -11,7 +12,8 @@ int _menver(info_t *info)
 }
 
 /**
- * _getenv -gets the value of an environ variabl
+ * _getenv -gets the value of an environ variable
+ * @info: argum
  * @nm: enver variable name
  *
  * Return: the value
@@ -33,6 +35,7 @@ char *_getenv(info_t, const char *nm)
 /**
  * _msetenver -Initialize a new environment variable,
  *	       or a exiting one
+ * @info: argum
  * Return: Always 0
  */
 int _msetenver(info_t *info)
@@ -49,7 +52,7 @@ int _msetenver(info_t *info)
 }
 /**
  * _insetenver -Remove function
- *
+ * @info: argum
  * Return: Always 0
  */
 int _insetever(info_t *info)
@@ -68,7 +71,7 @@ int _insetever(info_t *info)
 }
 /**
  * _enver_list -evern linked list
- *
+ * @info: argum
  * Return: Always 0
  */
 int _enver_list(ino_t *int)
