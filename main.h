@@ -14,5 +14,11 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void *_memcpy(void *dest, const void *src, size_t n);
 void *_realloc(void *ptr, size_t new_size);
 int _strcmp(const char *s1, const char *s2);
+void exit_shell(void);
+void print_environment(void);
+
+/*Helpers*/
+void _puts(char *str);
+int _putchar(char c);
 
 #endif

@@ -1,14 +1,20 @@
 #include "main.h"
 
-int main()
+/**
+ * main - Entry point of the shell program
+ *
+ * Description: Reads input commands from the user, executes them,
+ *              and provides a command-line interface.
+ *
+ * Return: Always 0.
+ */
+int main(void)
 {
 	char *buff = NULL;
 	size_t buff_size = 0;
 	char *token, **arr;
-	int status, i = 0, counter;
-	pid_t pid;
-
-	extern char **environ;
+	int line_num;
+	int i = 0;
 
 	while (1)
 	{
@@ -16,49 +22,32 @@ int main()
 		_getline(&buff, &buff_size, stdin);
 		arr = malloc(sizeof(char *) * 1024);
 		token = strtok(buff, " \n\t");
+
 		while (token)
 		{
 			arr[i] = token;
-			token = strtok(NULL, " \n\t");
+			token = _strtok(NULL, " \n\t");
 			i++;
 		}
+
 		arr[i] = NULL;
 
-		if (_strcmp(arr[0], "exit") == 0)
+		if (strcmp(arr[0], "env") == 0)
 		{
-			free(buff);
-			free(arr);
-			exit(0);
+			print_environment();
 		}
-		else if (_strcmp(arr[0], "env") == 0)
+		else if (strcmp(arr[0], "exit") == 0)
 		{
-			counter = 0;
-			while (environ[counter] != NULL)
-			{
-				write(1, environ[counter], strlen(environ[counter]));
-				write(1, "\n", 1);
-				counter++;
-			}
+			exit_shell();
 		}
 		else
 		{
-			pid = fork();
-			if (pid == 0)
-			{
-				if (execvp(arr[0], arr) == -1)
-				{
-					perror("execvp");
-					exit(0);
-				}
-			}
-			else
-			{
-				wait(&status);
-			}
+			execute_command(arr);
 		}
 
 		i = 0;
 		free(arr);
 	}
+
 	return (0);
 }
