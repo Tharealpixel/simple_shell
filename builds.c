@@ -44,14 +44,14 @@ void execute_command(char **arr, pid_t pid)
 	if (pid == -1)
 	{
 		perror("fork");
-		exit(1);
+		exit(0);
 	}
 	else if (pid == 0)
 	{
 		if (execvp(arr[0], arr) == -1)
 		{
 			perror("execvp");
-			exit(1);
+			exit(0);
 		}
 	}
 	else
@@ -59,7 +59,7 @@ void execute_command(char **arr, pid_t pid)
 		if (wait(&status) == -1)
 		{
 			perror("wait");
-			exit(1);
+			exit(0);
 		}
 	}
 }
