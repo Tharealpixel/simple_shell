@@ -13,14 +13,14 @@ int _menver(info_t *info)
 }
 
 /**
- * _getenver -gets the value of an environ variable
+ * _getenv -gets the value of an environ variable
  * @info: strcture potentail argument; use main
  *           constant function prototype.
  * @nm: enver variable name
  *
  * Return: the value
  */
-char *_getenver(info_t, const char *nm)
+char *_getenv(info_t, const char *nm)
 {
 	list_t *node = info->enver;
 	char *p;
@@ -79,7 +79,7 @@ int _insetever(info_t *info)
  *              constant function prototype
  * Return: Always 0
  */
-int _enver_list(info_t *int)
+int _enver_list(ino_t *int)
 {
 	list_t *node = NULL;
 	size_t i;
