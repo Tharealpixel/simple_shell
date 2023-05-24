@@ -13,5 +13,6 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 /*Memory functions*/
 void *_memcpy(void *dest, const void *src, size_t n);
 void *_realloc(void *ptr, size_t new_size);
+int _strcmp(const char *s1, const char *s2);
 
 #endif

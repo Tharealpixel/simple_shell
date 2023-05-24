@@ -5,8 +5,10 @@ int main()
 	char *buff = NULL;
 	size_t buff_size = 0;
 	char *token, **arr;
-	int status, i = 0;
+	int status, i = 0, counter;
 	pid_t pid;
+
+	extern char **environ;
 
 	while (1)
 	{
@@ -21,17 +23,39 @@ int main()
 			i++;
 		}
 		arr[i] = NULL;
-		pid = fork();
-		if (pid == 0)
+
+		if (_strcmp(arr[0], "exit") == 0)
 		{
-			if (execve(arr[0], arr, NULL) == -1)
+			free(buff);
+			free(arr);
+			exit(0);
+		}
+		else if (_strcmp(arr[0], "env") == 0)
+		{
+			counter = 0;
+			while (environ[counter] != NULL)
 			{
-				perror("exceve");
-				exit(0);
+				write(1, environ[counter], strlen(environ[counter]));
+				write(1, "\n", 1);
+				counter++;
 			}
 		}
 		else
-			wait(&status);
+		{
+			pid = fork();
+			if (pid == 0)
+			{
+				if (execvp(arr[0], arr) == -1)
+				{
+					perror("execvp");
+					exit(0);
+				}
+			}
+			else
+			{
+				wait(&status);
+			}
+		}
 
 		i = 0;
 		free(arr);
