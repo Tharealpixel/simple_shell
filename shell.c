@@ -40,14 +40,13 @@ void handle_input(char *buff, char **env)
 		execute_command(arr, pid);
 
 	free(arr);
-	free(buff);
 }
 
 /**
  * main - Entry point of the shell program
  *
- * Description: Reads input commands from the user, executes them,
- *              and provides a command-line interface.
+ * Description: Reads input commands from the user or standard input,
+ *              executes them, and provides a command-line interface.
  *
  * Return: Always 0.
  */
@@ -55,21 +54,27 @@ int main(void)
 {
 	char *buff = NULL, **env = environ;
 	size_t buff_size = 0;
+	ssize_t read;
 
-	while (1)
+	if (isatty(STDIN_FILENO))
 	{
-		write(1, "$ ", 2);
-
-		if (_getline(&buff, &buff_size, stdin) == -1)
+		write(STDOUT_FILENO, "($) ", 4);
+		while ((read = _getline(&buff, &buff_size, stdin)) != -1)
 		{
-			return(-1);
+			buff[read - 1] = '\0';
+			handle_input(buff, env);
+			write(STDOUT_FILENO, "($) ", 4);
 		}
-
-		handle_input(buff, env);
-
-		buff = NULL;
-		buff_size = 0;
+	}
+	else
+	{
+		while ((read = _getline(&buff, &buff_size, stdin)) != -1)
+		{
+			buff[read - 1] = '\0';
+			handle_input(buff, env);
+		}
 	}
 
-	return (0);
+	free(buff);
+	return 0;
 }
