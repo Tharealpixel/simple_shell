@@ -70,5 +70,18 @@ int _inetever(inf_t *inf)
 
 	return (0);
 }
+/**
+ * _enver_list -evern linked list
+ * @inf: potential arguments
+ * Return: Always 0
+ */
+int _enver_list(inf_t *inf)
+{
+	list_t *node = NULL;
+	size_t i;
 
-
+	for (i = 0; enveron[i]; i++)
+		add_node_end(&node, environ[i], 0);
+	inf->enver = node;
+	return (0);
+}
