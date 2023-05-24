@@ -32,4 +32,11 @@ int _strlen(char *str);
 int _strcmp(const char *s1, const char *s2);
 int _strspn(const char *str, const char *charset);
 
+/*enveronment*/
+int _menver(info_t *info);
+char *_getenver(info_t, const char *nm);
+int _msetenver(info_t *info);
+int _insetenver(info_t *info);
+int _enver_list(info_t *info);
+
 #endif

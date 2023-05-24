@@ -1,27 +1,28 @@
 #include "main.h"
 
 /**
- *_menver -print function the current enbironment
- * @inf: structure potential arguments;
+ *_menver -print function the current environment
+ * @info: structure potential arguments. used to main
  *       constant function prototype.
  * Return: Always 0
  */
-int _menver(inf_t *inf)
+int _menver(info_t *info)
 {
-	print_list_str(inf->env);
+	print_list_str(info->env);
 	return (0);
 }
 
 /**
  * _getenver -gets the value of an environ variable
- * @inf: strcture potentail argument
+ * @info: strcture potentail argument; use main
+ *           constant function prototype.
  * @nm: enver variable name
  *
  * Return: the value
  */
-char *_getenv(inf_t, const char *nm)
+char *_getenver(info_t, const char *nm)
 {
-	list_t *node = inf->enver;
+	list_t *node = info->enver;
 	char *p;
 
 	while (node)
@@ -36,52 +37,55 @@ char *_getenv(inf_t, const char *nm)
 /**
  * _msetenver -Initialize a new environment variable,
  *	       or a exiting one
- * @info: structure argument
+ * @info: structure cotain potential argum. to main
+ *              constant function prototype.
  * Return: Always 0
  */
-int _msetenver(inf_t *inf)
+int _msetenver(info_t *info)
 {
-	if (inf->argc != 3)
+	if (info->argc != 3)
 	{
 		_eputs("number of argument\n");
 		return (1);
 	}
-	if (_setenver(inf, inf->argv[1], inf->argv[2]))
+	if (_setenver(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (0);
 	return (1);
 }
 /**
  * _insetenver -Remove function
- * @inf: potential arguments
- * Reyurn: Always 0
+ * @info: struct containing potential arguments. used to main
+ *                constant function pototype.
+ * Return: Always 0
  */
-int _inetever(inf_t *inf)
+int _insetever(info_t *info)
 {
 	int i;
 
-	if (inf->argc == 1)
+	if (info->argc == 1)
 	{
 		_eputs("few arguments.\n");
 		return (1);
 	}
-	for (i = 1; i <= inf->argc; i++)
-		_insetenver(inf, inf->argv[i]);
+	for (i = 1; i <= info->argc; i++)
+		_insetenver(info, info->argv[i]);
 
 	return (0);
 }
 /**
  * _enver_list -evern linked list
- * @inf: potential arguments
+ * @info: struct potential arguments. used to main
+ *              constant function prototype
  * Return: Always 0
  */
-int _enver_list(inf_t *inf)
+int _enver_list(info_t *int)
 {
 	list_t *node = NULL;
 	size_t i;
 
 	for (i = 0; enveron[i]; i++)
 		add_node_end(&node, environ[i], 0);
-	inf->enver = node;
+	info->enver = node;
 	return (0);
 }
