@@ -2,8 +2,6 @@
 
 /**
  *_menver -print function the current environment
- * @info: structure potential arguments. used to main
- *       constant function prototype.
  * Return: Always 0
  */
 int _menver(info_t *info)
@@ -13,9 +11,7 @@ int _menver(info_t *info)
 }
 
 /**
- * _getenv -gets the value of an environ variable
- * @info: strcture potentail argument; use main
- *           constant function prototype.
+ * _getenv -gets the value of an environ variabl
  * @nm: enver variable name
  *
  * Return: the value
@@ -37,8 +33,6 @@ char *_getenv(info_t, const char *nm)
 /**
  * _msetenver -Initialize a new environment variable,
  *	       or a exiting one
- * @info: structure cotain potential argum. to main
- *              constant function prototype.
  * Return: Always 0
  */
 int _msetenver(info_t *info)
@@ -55,8 +49,7 @@ int _msetenver(info_t *info)
 }
 /**
  * _insetenver -Remove function
- * @info: struct containing potential arguments. used to main
- *                constant function pototype.
+ *
  * Return: Always 0
  */
 int _insetever(info_t *info)
@@ -75,8 +68,7 @@ int _insetever(info_t *info)
 }
 /**
  * _enver_list -evern linked list
- * @info: struct potential arguments. used to main
- *              constant function prototype
+ *
  * Return: Always 0
  */
 int _enver_list(ino_t *int)
