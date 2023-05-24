@@ -56,7 +56,19 @@ int _msetenver(inf_t *inf)
  * @inf: potential arguments
  * Reyurn: Always 0
  */
-int _inetever(info_t *info)
+int _inetever(inf_t *inf)
 {
 	int i;
+
+	if (inf->argc == 1)
+	{
+		_eputs("few arguments.\n");
+		return (1);
+	}
+	for (i = 1; i <= inf->argc; i++)
+		_insetenver(inf, inf->argv[i]);
+
+	return (0);
+}
+
 
