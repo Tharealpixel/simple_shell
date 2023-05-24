@@ -10,10 +10,10 @@
  */
 int main(void)
 {
-	char *buff = NULL;
+	char *buff = NULL, *token, **arr, **env = environ;
 	size_t buff_size = 0;
-	char *token, **arr;
 	int i = 0;
+	pid_t pid = 0;
 
 	while (1)
 	{
@@ -21,32 +21,24 @@ int main(void)
 		_getline(&buff, &buff_size, stdin);
 		arr = malloc(sizeof(char *) * 1024);
 		token = strtok(buff, " \n\t");
-
 		while (token)
 		{
 			arr[i] = token;
 			token = strtok(NULL, " \n\t");
 			i++;
 		}
-
 		arr[i] = NULL;
-
 		if (_strcmp(arr[0], "env") == 0)
-		{
-			print_environment();
-		}
+			print_environment(env);
 		else if (_strcmp(arr[0], "exit") == 0)
-		{
 			exit_shell();
-		}
 		else
-		{
-			execute_command(arr);
-		}
-
+			execute_command(arr, pid);
 		i = 0;
 		free(arr);
+		free(buff);
+		buff = NULL;
+		buff_size = 0;
 	}
-
 	return (0);
 }

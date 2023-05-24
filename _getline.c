@@ -13,7 +13,7 @@
 ssize_t _getline(char **bufline, size_t *size, FILE *stream)
 {
 	size_t i = 0, new_size;
-        int c;
+	int c;
 	char *new_line;
 
 	if (!bufline || !size || !stream)

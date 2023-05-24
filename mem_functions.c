@@ -29,6 +29,7 @@ void *_memcpy(void *dest, const void *src, size_t n)
 void *_realloc(void *ptr, size_t new_size)
 {
 	void *new_ptr;
+	size_t copy_size;
 
 	if (new_size == 0)
 	{
@@ -45,7 +46,7 @@ void *_realloc(void *ptr, size_t new_size)
 
 	if (new_size > 0)
 	{
-		size_t copy_size = (new_size < sizeof(ptr)) ? new_size : sizeof(ptr);
+		copy_size = (new_size < sizeof(ptr)) ? new_size : sizeof(ptr);
 		_memcpy(new_ptr, ptr, copy_size);
 	}
 

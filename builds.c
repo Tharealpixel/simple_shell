@@ -2,20 +2,21 @@
 
 /**
  * print_environment - Prints the current environment variables
- *
+ * @env : enviroment
  * Description: Retrieves and prints the current environment variables
  *              to the standard output.
  */
-void print_environment(void)
+void print_environment(char **env)
 {
-    int i;
-    extern char **environ;
+	int counter = 0;
+	int strlm =  _strlen(env[counter]);
 
-    for (i = 0; environ[i] != NULL; i++)
-    {
-        _puts(environ[i]);
-        _putchar('\n');
-    }
+	while (env[counter] != NULL)
+	{
+		write(1, env[counter], strlm);
+		write(1, "\n", 1);
+		counter++;
+	}
 }
 
 /**
@@ -26,23 +27,39 @@ void print_environment(void)
  */
 void exit_shell(void)
 {
-    exit(EXIT_SUCCESS);
+	exit(0);
 }
-void execute_command(char **arr)
+/**
+ * execute_command - Executes a command in the shell.
+ * @arr: The command to execute.
+ * @pid: child process
+ * Return: void
+ */
+void execute_command(char **arr, pid_t pid)
 {
 	int status;
-	pid_t pid = fork();
 
-	if (pid == 0)
+	pid = fork();
+
+	if (pid == -1)
 	{
-		if (execve(arr[0], arr, NULL) == -1)
+		perror("fork");
+		exit(1);
+	}
+	else if (pid == 0)
+	{
+		if (execvp(arr[0], arr) == -1)
 		{
-			perror("execve");
-			exit(0);
+			perror("execvp");
+			exit(1);
 		}
 	}
 	else
 	{
-		wait(&status);
+		if (wait(&status) == -1)
+		{
+			perror("wait");
+			exit(1);
+		}
 	}
 }
