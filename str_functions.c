@@ -31,7 +31,7 @@ int _strspn(const char *str, const char *charset)
 		str++;
 	}
 
-	return count;
+	return (count);
 }
 /**
  * _strlen - find the length of a string
