@@ -22,7 +22,7 @@ ssize_t _getline(char **bufline, size_t *size, FILE *stream)
 	if (*bufline == NULL)
 	{
 		*size = DEFAULT_BUFFER_SIZE;
-		*bufline = (char *)malloc(*size);
+		*bufline = malloc(*size);
 		if (*bufline == NULL)
 			return (-1);
 	}
@@ -32,7 +32,7 @@ ssize_t _getline(char **bufline, size_t *size, FILE *stream)
 		if (i >= *size - 1)
 		{
 			new_size = *size * 2;
-			new_line = (char *)_realloc(*bufline, new_size);
+			new_line = realloc(*bufline, new_size);
 			if (new_line == NULL)
 				return (-1);
 
@@ -49,6 +49,7 @@ ssize_t _getline(char **bufline, size_t *size, FILE *stream)
 	if (i == 0)
 		return (-1);
 
-	(*bufline)[i] = '\0';
+	(*bufline)[i - 1] = '\0';
+
 	return (i);
 }

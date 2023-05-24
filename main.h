@@ -21,6 +21,7 @@ void *_realloc(void *ptr, size_t new_size);
 void exit_shell(void);
 void print_environment(char **env);
 void execute_command(char **arr, pid_t pid);
+void handle_input(char *buff, char **env);
 
 /*Helpers*/
 void _puts(char *str);
@@ -29,5 +30,6 @@ int _putchar(char c);
 /*str*/
 int _strlen(char *str);
 int _strcmp(const char *s1, const char *s2);
+int _strspn(const char *str, const char *charset);
 
 #endif
