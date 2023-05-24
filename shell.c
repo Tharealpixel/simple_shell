@@ -17,7 +17,7 @@ int main(void)
 
 	while (1)
 	{
-		write(1, "#cisfun$ ", 9);
+		write(1, "$ ", 2);
 		_getline(&buff, &buff_size, stdin);
 		arr = malloc(sizeof(char *) * 1024);
 		token = strtok(buff, " \n\t");
