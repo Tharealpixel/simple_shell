@@ -46,4 +46,8 @@ int _msetenver(inf_t *inf)
 		_eputs("number of argument\n");
 		return (1);
 	}
-	if (_setenver(inf, inf->argv[1], inf-
+	if (_setenver(inf, inf->argv[1], inf->argv[2]))
+		return (0);
+	return (0);
+	return (1);
+}
