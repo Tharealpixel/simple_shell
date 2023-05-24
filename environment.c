@@ -51,3 +51,12 @@ int _msetenver(inf_t *inf)
 	return (0);
 	return (1);
 }
+/**
+ * _insetenver -Remove function
+ * @inf: potential arguments
+ * Reyurn: Always 0
+ */
+int _inetever(info_t *info)
+{
+	int i;
+
